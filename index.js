@@ -11,10 +11,20 @@ const favoritesRoutes = require('./routes/favorites');
 const userRoutes = require('./routes/users');
 
 const app = express();
+
 const corsOptions = {
-    credentials: true,
-    origin: ['http://localhost:5173', 'https://scripta-frontend-sand.vercel.app'] // Whitelist the domains you want to allow
+    origin: 'https://scripta-frontend-sand.vercel.app/', // Allow only this domain
+    methods: 'GET,POST,PUT,DELETE', // Allow only specific HTTP methods
+    allowedHeaders: 'Content-Type,Authorization' // Allow specific headers
 };
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+});
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
