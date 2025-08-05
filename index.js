@@ -13,7 +13,7 @@ const app = express();
 
 // ✅ CORS'u burada uyguluyoruz
 app.use(cors({
-  origin: 'http://localhost:3000', // Frontend'in çalıştığı domain
+  origin: 'https://scripta-backend-7bznrk0c7-rohat-filitoglus-projects.vercel.app', // Frontend'in çalıştığı domain
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
