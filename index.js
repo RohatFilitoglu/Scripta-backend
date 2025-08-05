@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
-
+const serverless = require('serverless-http'); 
 const postRoutes = require('./routes/posts.js');
 const commentRoutes = require('./routes/comments.js');
 const favoritesRoutes = require('./routes/favorites.js')
@@ -20,3 +20,4 @@ app.use('/comments', commentRoutes);
 app.use('/profiles', userRoutes);
 
 module.exports = app; // 👈 Export et
+module.exports.handler = serverless(app); 
