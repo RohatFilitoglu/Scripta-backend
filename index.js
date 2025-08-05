@@ -11,9 +11,21 @@ const userRoutes = require("./routes/users.js");
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://scripta-frontend-sand.vercel.app'
+];
+
 // ✅ CORS'u burada uyguluyoruz
 app.use(cors({
-  origin: 'https://scripta-frontend-sand.vercel.app/', // Frontend'in çalıştığı domain
+  origin: function(origin, callback) {
+    // CORS isteklerinde origin olmayabilir (örneğin curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation: ' + origin));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
