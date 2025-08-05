@@ -1,6 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors'); // <== CORS modülünü ekliyoruz
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://scripta-frontend-sand.vercel.app'
+];
+
 app.use(cors({
   origin: function(origin, callback) {
     // CORS isteklerinde origin olmayabilir (örneğin curl)
@@ -23,11 +29,6 @@ const favoritesRoutes = require('./routes/favorites.js');
 const userRoutes = require("./routes/users.js");
 
 const app = express();
-
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://scripta-frontend-sand.vercel.app'
-];
 
 app.options('*', cors());
 
