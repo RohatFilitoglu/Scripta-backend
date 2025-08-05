@@ -11,20 +11,11 @@ const favoritesRoutes = require('./routes/favorites');
 const userRoutes = require('./routes/users');
 
 const app = express();
-const corsOpts = {
-  origin: '*',
-
-  methods: [
-    'GET',
-    'POST',
-  ],
-
-  allowedHeaders: [
-    'Content-Type',
-  ],
+const corsOptions = {
+    credentials: true,
+    origin: ['http://localhost:5173', 'https://scripta-frontend-sand.vercel.app'] // Whitelist the domains you want to allow
 };
-
-app.use(cors(corsOpts));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/favorites', favoritesRoutes);
