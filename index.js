@@ -15,7 +15,8 @@ const app = express();
 const corsOptions = {
     origin: 'https://scripta-frontend-sand.vercel.app', // Allow only this domain
     methods: 'GET,POST,PUT,DELETE', // Allow only specific HTTP methods
-    allowedHeaders: 'Content-Type,Authorization' // Allow specific headers
+    allowedHeaders: 'Content-Type,Authorization', // Allow specific headers]
+    credentials: true
 };
 
 app.use((req, res, next) => {
