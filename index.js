@@ -7,18 +7,7 @@ const allowedOrigins = [
   'https://scripta-frontend-sand.vercel.app'
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    // CORS isteklerinde origin olmayabilir (örneğin curl)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS policy violation: ' + origin));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
