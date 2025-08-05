@@ -14,7 +14,7 @@ const options = {
         description: "Yerel Geliştirme Sunucusu"
       },
       {
-        url: "https://scripta-backend-one.vercel.app",
+        url: "https://scripta-backend-git-main-rohat-filitoglus-projects.vercel.app/",
         description: "Vercel Canlı Sunucu"
       }
     ],
