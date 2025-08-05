@@ -12,6 +12,10 @@ const options = {
       {
         url: "http://localhost:3001",
         description: "Yerel Geliştirme Sunucusu"
+      },
+      {
+        url: "https://scripta-backend-one.vercel.app",
+        description: "Vercel Canlı Sunucu"
       }
     ],
   },
