@@ -2,22 +2,32 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger.js');
-const serverless = require('serverless-http'); 
-const postRoutes = require('./routes/posts.js');
-const commentRoutes = require('./routes/comments.js');
-const favoritesRoutes = require('./routes/favorites.js')
-const userRoutes = require("./routes/users.js")
+const serverless = require('serverless-http');
+
+const swaggerSpec = require('./swagger');
+const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comments');
+const favoritesRoutes = require('./routes/favorites');
+const userRoutes = require('./routes/users');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/favorites", favoritesRoutes);
+app.use('/favorites', favoritesRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
 app.use('/profiles', userRoutes);
 
-module.exports = app; // 👈 Export et
-module.exports.handler = serverless(app); 
+if (process.env.VITE_LOCAL === 'true') {
+  // 🌐 LOCAL çalıştırmak için: .env dosyana LOCAL=true ekle
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+} else {
+  // 🚀 Vercel için export
+  module.exports = app;
+  module.exports.handler = serverless(app);
+}
