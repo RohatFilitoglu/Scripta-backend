@@ -1,6 +1,19 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors'); // <== CORS modülünü ekliyoruz
+app.use(cors({
+  origin: function(origin, callback) {
+    // CORS isteklerinde origin olmayabilir (örneğin curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation: ' + origin));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
@@ -15,20 +28,6 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://scripta-frontend-sand.vercel.app'
 ];
-
-// ✅ CORS'u burada uyguluyoruz
-app.use(cors({
-  origin: function(origin, callback) {
-    // CORS isteklerinde origin olmayabilir (örneğin curl)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS policy violation: ' + origin));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 app.options('*', cors());
 
