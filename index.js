@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
@@ -10,7 +9,6 @@ const favoritesRoutes = require('./routes/favorites.js')
 const userRoutes = require("./routes/users.js")
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 app.use("/favorites", favoritesRoutes);
