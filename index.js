@@ -19,6 +19,4 @@ app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
 app.use('/profiles', userRoutes);
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`Server running at http://localhost:${process.env.PORT || 3001}`);
-});
+module.exports = app; // 👈 Export et
