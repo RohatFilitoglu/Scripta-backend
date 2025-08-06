@@ -42,5 +42,5 @@ if (process.env.VITE_LOCAL === 'true') {
 } else {
   // 🚀 Vercel için export
   module.exports = app;
-  module.exports.handler = serverless(app);
+  
 }
