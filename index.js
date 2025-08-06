@@ -18,13 +18,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: 'https://scripta-frontend-sand.vercel.app/', // <-- Buraya kendi frontend domainini yaz!
   credentials: true
 }));
 
