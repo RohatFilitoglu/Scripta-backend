@@ -18,7 +18,10 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: 'https://scripta-frontend-sand.vercel.app/', // <-- Buraya kendi frontend domainini yaz!
+  origin: [
+    'https://scripta-frontend-sand.vercel.app',
+    'http://localhost:5173'
+  ],
   credentials: true
 }));
 
