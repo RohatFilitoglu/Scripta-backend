@@ -12,16 +12,10 @@ const userRoutes = require('./routes/users');
 
 const app = express();
 
-const allowedOrigins = [
-  'https://scripta-frontend-sand.vercel.app',
-  'http://localhost:3000'
-];
 
 app.use(cors({
-  origin: [
-    'https://scripta-frontend-sand.vercel.app',
-    'http://localhost:5173'
-  ],
+  origin: ['https://scripta-frontend-sand.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
